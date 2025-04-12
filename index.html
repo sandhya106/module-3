@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NarrowItDownApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Narrow Down Menu App</title>
+  <style>
+    .error { color: red; font-weight: bold; }
+    li { margin-bottom: 5px; }
+    button { margin-left: 10px; }
+  </style>
+</head>
+<body ng-controller="NarrowItDownController as ctrl">
+
+  <input type="text" ng-model="ctrl.searchTerm" placeholder="Search term">
+  <button ng-click="ctrl.narrowDown()">Narrow It Down For Me!</button>
+
+  <!-- Display error or "Nothing found!" message -->
+  <p class="error" ng-if="ctrl.searched && ctrl.found.length === 0">{{ ctrl.message }}</p>
+
+  <!-- Display the list of found items -->
+  <ul>
+    <li ng-repeat="item in ctrl.found">
+      {{ item.name }} ({{ item.short_name }})
+      <button ng-click="ctrl.removeItem($index)">Remove</button>
+    </li>
+  </ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
